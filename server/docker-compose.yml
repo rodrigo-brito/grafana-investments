@@ -1,0 +1,21 @@
+version: '3'
+services:
+  influxdb:
+    image: influxdb:1.7
+    volumes:
+      - /var/lib/influxdb
+    ports:
+      - 8086:8086
+    environment:
+      - INFLUXDB_DB=finances
+      - INFLUXDB_ADMIN_ENABLED=true
+      - INFLUXDB_ADMIN_USER=root
+      - INFLUXDB_ADMIN_PASSWORD=finances
+  grafana:
+    image: grafana/grafana:6.0.2
+    volumes:
+      - /var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=changeme
+    ports:
+      - 3000:3000
